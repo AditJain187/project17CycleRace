@@ -45,10 +45,12 @@ path.velocityX = -5;
 //creating boy running
 mainCyclist  = createSprite(70,150);
 mainCyclist.addAnimation("SahilRunning",mainRacerImg1);
+mainCyclist.addAnimation("SahilCollided",mainRacerImg2);
 mainCyclist.scale=0.07;
   
 //set collider for mainCyclist
-
+mainCyclist.setCollider("circle",0,0,10);
+mainCyclist.debug = true;
   
 gameOver = createSprite(650,150);
 gameOver.addImage(gameOverImg);
@@ -123,11 +125,11 @@ function draw() {
 }else if (gameState === END) {
     gameOver.visible = true;
     //Add code to show restart game instrution in text here
-    text("Press space to restart the game",600,200);
+    text("Press space to restart the game",500,200);
   
     path.velocityX = 0;
     mainCyclist.velocityY = 0;
-    mainCyclist.addAnimation("SahilRunning",mainRacerImg2);
+    mainCyclist.changeAnimation("SahilCollided",mainRacerImg2);
   
     pinkCG.setVelocityXEach(0);
     pinkCG.setLifetimeEach(-1);
@@ -178,10 +180,7 @@ function reset(){
   gameOver.visible = false;
   mainCyclist.changeAnimation("SahilRunning",mainRacerImg1);
   pinkCG.destroyEach();
-  distance = 0;
+  redCG.destroyEach();
+  yellowCG.destroyEach();
+  distance = 0; 
 }
-
-
-
-
-
